@@ -1,0 +1,29 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript">
+    var primeiroNome = prompt("Qual o seu primeiro nome?");
+    var sobreNome = prompt("Qual seu sobrenome?");
+    var nomeCompleto = primeiroNome + " " + sobreNome;
+    var quantidadeRepeticoes = parseInt(prompt("Quantas vezes você quer ver seu nome?"));
+    var corEscolhida = prompt("Qual cor você quer para o sobrenome?");
+
+    if (isNaN(quantidadeRepeticoes) || quantidadeRepeticoes <= 0) {
+        alert("Por favor, insira um valor válido para as repetições.");
+    } else {
+        for (var i = 1; i <= quantidadeRepeticoes; i++) {
+            var nomeExibido = "";
+
+            var primeiroNomeCor = '<span style="color: black;">' + primeiroNome + '</span>';
+            var sobreNomeCor = '<span style="color: ' + corEscolhida + ';">' + sobreNome + '</span>';
+
+            nomeExibido = primeiroNomeCor + " " + sobreNomeCor;
+
+            document.write("<p>" + i + " - " + nomeExibido + "</p>");
+        }
+    }
+</script>
+</head>
+<body>
+</body>
+</html>
