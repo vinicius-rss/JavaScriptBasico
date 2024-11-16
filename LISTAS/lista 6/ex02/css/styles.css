@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.candidato-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+.candidato-box {
+    padding: 20px;
+    background-color: #a0ce86;
+    border: 3px solid black;
+    width: 290px;
+}
+
+.candidato-item h2 {
+    text-transform: uppercase;
+    color: rgb(211, 19, 19);
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.candidato-box img {
+    max-width: 100%;
+    height: 400px;
+    transition: transform 0.3s ease;
+}
+
+.candidato-box img:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.nroVotos {
+    font-size: 40px;
+    color: red;
+}
+
+.vencedor {
+    background-color: #006400;  
+}
