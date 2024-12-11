@@ -7,7 +7,7 @@ function exibirNumerosAleatorios() {
         const gerarNumerosAleatorios = Math.floor(Math.random() * 10);
         numeros += gerarNumerosAleatorios;
     }
-    console.log(numeros);
+    return numeros;
 }
 
-exibirNumerosAleatorios();
+alert(exibirNumerosAleatorios());

@@ -19,4 +19,4 @@ function gerarSenhaForte(tamanho = 8) {
 }
 
 
-console.log(gerarSenhaForte());
+alert(gerarSenhaForte());

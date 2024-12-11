@@ -8,7 +8,7 @@ function exibirMinusculas() {
         letrasAleatorias += letrasMinusculas[gerarAleatoria];
     }
 
-    console.log(letrasAleatorias);
+    return letrasAleatorias;
 }
 
-exibirMinusculas();
+alert(exibirMinusculas());

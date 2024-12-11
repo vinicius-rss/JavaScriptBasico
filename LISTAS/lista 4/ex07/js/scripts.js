@@ -14,9 +14,10 @@ function exibirLetrasNumeros() {
         numerosAleatorios += numeros[indexAleatorioNumeros];
     }
 
+    const numerosComLetras = letrasAleatorias + numerosAleatorios;
     
-    console.log(letrasAleatorias);
-    console.log(numerosAleatorios);
+    return numerosComLetras;
+  
 }
 
-exibirLetrasNumeros();
+alert(exibirLetrasNumeros());

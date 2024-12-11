@@ -1,4 +1,4 @@
-function exibirMinusculas() {
+function exibirMaiusculas() {
     const letrasMaiusculas = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     let letrasAleatorias = '';
 
@@ -7,7 +7,7 @@ function exibirMinusculas() {
         const gerarAleatoria = Math.floor(Math.random() * letrasMaiusculas.length);
         letrasAleatorias += letrasMaiusculas[gerarAleatoria];
     }
-    console.log(letrasAleatorias);
+    return letrasAleatorias;
 }
 
-exibirMinusculas();
+alert(exibirMaiusculas());
