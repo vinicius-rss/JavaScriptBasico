@@ -1,11 +1,20 @@
 * {
     box-sizing: border-box;
-    margin:0px;
-    padding:0px;
+    margin: 0px;
+    padding: 0px;
+    font-family: fantasy;
 }
 
-body {
 
+body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 .menu {
@@ -13,7 +22,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1px ;
+    padding: 1px;
 }
 
 .menu ul {
@@ -26,21 +35,30 @@ body {
     padding: 0;
 }
 
- 
-
-.left, .center  {
-    flex-grow: 1;   
+.left, .center {
+    flex-grow: 1;
     text-align: center;
     margin-right: 250px;
-    font-size: 26px;
-     
+    font-size: 22px;
 }
-
- 
 
 .center a, .left a {
     color: yellow;
 }
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: yellow;
+    gap: 8px;  
+}
+
+.menu .left {
+    margin-left: 60px;
+}
+
 
 
 .menu .right {
@@ -49,13 +67,12 @@ body {
     margin-right: 10px;
 }
 
-.menu .right  a {
+.menu .right a {
     text-transform: uppercase;
     text-align: center;
-    
     padding: 10px;
     width: 125px;
-} 
+}
 
 .menu li {
     color: white;
@@ -83,10 +100,144 @@ nav ul {
 nav li {
     display: inline-block;
     color: white;
-    padding: 15px;
+    padding: 10px;
 }
 
 nav li a {
     text-decoration: none;
     color: inherit;
 }
+
+/* FOOTER */
+footer {
+    background-color: black;
+    padding: 20px 0;
+    text-align: center;  
+}
+
+.footer-menu {
+    display: flex;
+    justify-content: center;  
+    align-items: center;
+    gap: 20px;  
+}
+
+.footer-menu ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+   
+}
+
+.footer-menu a {
+    color: yellow;
+    font-size: 26px;
+    text-decoration: none;
+    margin: 0; 
+}
+
+.footer-menu li {
+    color: white;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;   
+}
+
+.footer-menu span {
+    font-size: 16px;
+    margin-left: 4px;
+}
+
+.parente {
+    color: yellow;  
+}
+
+.numero {
+    color: white; 
+}
+
+
+
+
+.acertos, .erros {
+    text-transform: uppercase;
+}
+
+.acertos {
+    margin-left: 75px;
+}
+
+select {
+    padding: 15px 120px 15px 0px;
+    font-size: 16px;
+    border-radius: 15px;
+    background-color: #f7e79a;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    outline: none;
+}
+
+select option {
+    background-color: black;
+    color: white;
+}
+
+select:focus {
+    border-color: yellow;
+    border: 2px solid #b2b2b2;
+}
+
+.nivel-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;  
+}
+
+.nivel-container label {
+    color: yellow;
+    font-size: 26px;
+    white-space: nowrap;  
+}
+
+
+ 
+.numero {
+    font-size: 400px;
+    margin-left: 470px;
+    text-align: center;
+    cursor: pointer;   
+    display: inline-block; 
+    color: black;
+}
+
+.container-numero {
+    text-align: center;
+    display: inline-block;  
+    width: auto;  
+    margin: 0 auto;
+}
+
+.caixa-numero p {
+    margin-top: 50px;
+    margin-left: 370px;
+    width: 610px;    
+    height: 450px;   
+     
+    overflow: hidden;  
+    text-align: center;
+    line-height: 450px; 
+}
+
+
+ 
+.main {
+    padding: 20px;  
+    display: flex;
+    justify-content: center;
+}
+
