@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="jalertwifi/css/jAlertWifi.css">
+    <title>JOGO É PAR?</title>
+</head>
+
+<body>
+    <audio id="background-music" src="audio/background music.mp3" loop autoplay></audio>
+
+    <div id="tela-login" class="tela-login">
+        <div class="formulario-login">
+            <h2>PAR OU IMPAR?</h2>
+            <input type="text" id="nome" placeholder="Usuário" />
+            <input type="password" id="senha" placeholder="Senha" />
+            <button id="login">Login</button>
+            <p class="btnCadastrar"><a href="cadastro.html">Cadastre-se aqui</a></p>
+        </div>
+    </div>
+    <header>
+        <nav class="menu">
+            <ul>
+                <li class="left">
+                    <div class="nivel-container">
+                        <label for="dificuldade">Nível:</label>
+                        <select id="dificuldade">
+                            <option value="selecione">Selecione</option>
+                            <option value="facil">Fácil</option>
+                            <option value="medio">Médio</option>
+                            <option value="dificil">Difícil</option>
+                        </select>
+                    </div>
+                </li>                
+                <li class="center"><a href="">Tempo:</a> <span id="tempo">00:00</span></li>
+                <li class="right">
+                    <a href="" id="iniciar">Iniciar</a>
+                    <a href="" id="pausar">Pausar</a>
+                    <a href="" id="parar">Parar</a>
+                    <a href="" id="fechar">Fechar</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container-numero">
+            <div class="caixa-numero">
+                <p class="numero">-</p>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-menu">
+            <ul>
+                <li class="acertos">
+                    <a href="">Acertos:</a><span>0 (<span class="parente">0%</span>)</span>
+                </li>
+                <li class="erros"><a href="">Erros:</a><span>0</span></li>
+                <li class="sorteados"><a href="">Números pares sorteados:</a><span>0</span></li>
+            </ul>
+        </div>
+    </footer>   
+    <script src="js/index.js"></script>
+    <script src="jalertwifi/js/jAlertWifi.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,126 +1,141 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const dificuldadeSelect = document.getElementById("dificuldade");
-    const tempoDisplay = document.getElementById("tempo");
-    const iniciarBtn = document.querySelector(".right a:nth-child(1)");
-    const pausarBtn = document.querySelector(".right a:nth-child(2)");
-    const pararBtn = document.querySelector(".right a:nth-child(3)"); 
-    const numeroElemento = document.querySelector(".numero");
-    const acertosDisplay = document.querySelector(".acertos span");
-    const errosDisplay = document.querySelector(".erros span");
-    const sorteadosDisplay = document.querySelector(".sorteados span");
+document.addEventListener("DOMContentLoaded", function() {
+    var dificuldadeSelect = document.getElementById("dificuldade");
+    var tempoDisplay = document.getElementById("tempo");
+    var iniciarBtn = document.getElementById("iniciar");
+    var pausarBtn = document.getElementById("pausar");
+    var pararBtn = document.getElementById("parar");
+    var numeroElemento = document.querySelector(".numero");
+    var acertosDisplay = document.querySelector(".acertos span");
+    var parenteDisplay = document.querySelector(".parente");
+    var errosDisplay = document.querySelector(".erros span");
+    var sorteadosDisplay = document.querySelector(".sorteados span");
 
-    let intervalo = null;
-    let tempoRestante = 0;
-    let acertos = 0;
-    let erros = 0;
-    let paresSorteados = 0;
-    let totalClicados = 0;
+    var tempoRestante = 0;
+    var acertos = 0;
+    var erros = 0;
+    var totalClicados = 0;
+    var intervalo;
+    var jogoIniciado = false;
+    var sorteioIntervalo;
 
-    const temposPorDificuldade = {
+    var temposPorDificuldade = {
         selecione: 0,
-        facil: 120, 
-        medio: 90,  
-        dificil: 60 
+        facil: 120,
+        medio: 90,
+        dificil: 60
     };
 
-    dificuldadeSelect.addEventListener("change", () => {
+    dificuldadeSelect.addEventListener("change", function() {
         tempoRestante = temposPorDificuldade[dificuldadeSelect.value] || 0;
         atualizarTempo();
     });
 
     function atualizarTempo() {
-        const minutos = Math.floor(tempoRestante / 60);
-        const segundos = tempoRestante % 60;
-        tempoDisplay.textContent = `${minutos}:${segundos.toString().padStart(2, "0")}`;
+        var minutos = Math.floor(tempoRestante / 60);
+        var segundos = tempoRestante % 60;
+        tempoDisplay.textContent = minutos + ":" + (segundos < 10 ? "0" + segundos : segundos);
     }
+
+    function iniciarCronometro() {
+        if (intervalo) return;
+        intervalo = setInterval(function() {
+            if (tempoRestante > 0) {
+                tempoRestante--;
+                atualizarTempo();
+            } else {
+                clearInterval(intervalo);
+                intervalo = null;
+            }
+        }, 1000);
+    }
+
+    function pausarCronometro() {
+        clearInterval(intervalo);
+        intervalo = null;
+    }
+
+    function pararCronometro() {
+        clearInterval(intervalo);
+        intervalo = null;
+        tempoRestante = temposPorDificuldade[dificuldadeSelect.value] || 0;
+        atualizarTempo();
+        jogoIniciado = false;
+        numeroElemento.textContent = "-";
+    }
+
+    iniciarBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        if (dificuldadeSelect.value === "selecione") return;
+        jogoIniciado = true;
+        iniciarCronometro();
+        iniciarSorteioNumero();
+    });
+
+    pausarBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        pausarCronometro();
+        pararSorteioNumero();
+    });
+
+    pararBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+        pararCronometro();
+        pararSorteioNumero();
+    });
 
     function gerarNumero() {
         return Math.floor(Math.random() * 100) + 1;
     }
 
-    iniciarBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        if (dificuldadeSelect.value === "selecione") {
-            alert("Selecione um nível de dificuldade para iniciar.");
-            return;
+    function atualizarNumero() {
+        if (jogoIniciado) {
+            numeroElemento.textContent = gerarNumero();
+            numeroElemento.style.color = "black";
         }
+    }
 
-        resetarJogo();
-        iniciarTemporizador();
-    });
-
-    function iniciarTemporizador() {
-        intervalo = setInterval(() => {
-            if (tempoRestante > 0) {
-                tempoRestante--;
-                atualizarTempo();
-
-                let novoNumero = gerarNumero();
-                numeroElemento.textContent = novoNumero;
-                numeroElemento.style.color = "black"; 
-
-                if (novoNumero % 2 === 0) {
-                    paresSorteados++;
-                    sorteadosDisplay.textContent = paresSorteados;
-                }
-            } else {
-                pararJogo();
+    function iniciarSorteioNumero() {
+        if (sorteioIntervalo) return;
+        sorteioIntervalo = setInterval(function() {
+            if (jogoIniciado) {
+                atualizarNumero();
             }
         }, 1000);
     }
 
-    pausarBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        clearInterval(intervalo);
-    });
-
-    pararBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-        pararJogo();
-    });
-
-    function pararJogo() {
-        clearInterval(intervalo);
-        alert("O jogo foi encerrado.");
-        resetarJogo();
+    function pararSorteioNumero() {
+        clearInterval(sorteioIntervalo);
+        sorteioIntervalo = null;
     }
 
-    function resetarJogo() {
-        clearInterval(intervalo);
+    numeroElemento.addEventListener("click", function() {
+        if (!jogoIniciado) return;
 
-        tempoRestante = temposPorDificuldade[dificuldadeSelect.value] || 0;
-        acertos = 0;
-        erros = 0;
-        paresSorteados = 0;
-        totalClicados = 0;
+        var numeroAtual = parseInt(numeroElemento.textContent);
+        if (isNaN(numeroAtual)) return;
 
-        atualizarTempo();
-        numeroElemento.textContent = "-";
-        acertosDisplay.textContent = "0 (0%)";
-        errosDisplay.textContent = "0";
-        sorteadosDisplay.textContent = "0";
-    }
-
-    numeroElemento.addEventListener("click", () => {
-        const numeroAtual = parseInt(numeroElemento.textContent);
-
-        if (!isNaN(numeroAtual)) {
-            totalClicados++;
-
-            if (numeroAtual % 2 === 0) {
-                acertos++;
-                numeroElemento.style.color = "green";
-            } else {
-                erros++;
-                numeroElemento.style.color = "red";
-            }
-
-            acertosDisplay.textContent = `${acertos} (${calcularPorcentagem(acertos, totalClicados)}%)`;
-            errosDisplay.textContent = erros;
+        totalClicados++;
+        if (numeroAtual % 2 === 0) {
+            acertos++;
+            numeroElemento.style.color = "green";
+        } else {
+            erros++;
+            numeroElemento.style.color = "red";
         }
+
+        atualizarEstatisticas();
+        
+        pararSorteioNumero();
+        
+        setTimeout(function() {
+            atualizarNumero();
+            iniciarSorteioNumero();
+        }, 200);
     });
 
-    function calcularPorcentagem(acertos, total) {
-        return total === 0 ? 0 : ((acertos / total) * 100).toFixed(2);
+    function atualizarEstatisticas() {
+        var porcentagem = totalClicados > 0 ? ((acertos / totalClicados) * 100).toFixed(1) : 0;
+        acertosDisplay.innerHTML = acertos + " (<span class='parente'>" + porcentagem + "%</span>)";
+        errosDisplay.textContent = erros;
     }
 });
