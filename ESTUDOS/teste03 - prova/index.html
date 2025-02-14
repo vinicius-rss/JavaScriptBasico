@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    //Manipulando texto/botões
+
+<button id="meuBotao">Clique Aqui</button>
+<p id="meuTexto">Texto inicial.</p>
+<script>
+  document.getElementById("meuBotao").addEventListener("click", function () {
+    document.getElementById("meuTexto").innerText = "Texto atualizado!";
+  });
+</script>
+
+//Entrada de usuário (input)
+
+<input type="text" id="nomeInput" placeholder="Digite seu nome">
+<button onclick="mostrarNome()">Enviar</button>
+<p id="saida"></p>
+
+<script>
+  function mostrarNome() {
+    let nome = document.getElementById("nomeInput").value;
+    document.getElementById("saida").innerText = "Olá, " + nome + "!";
+  }
+</script>
+
+//Alterando estilos com meu js
+
+<button onclick="mudarCor()">Mudar Cor</button>
+<p id="textoColorido">Mude minha cor!</p>
+
+<script>
+  function mudarCor() {
+    document.getElementById("textoColorido").style.color = "red";
+  }
+</script>
+
+//Lista dinâmica
+<input type="text" id="itemInput" placeholder="Novo item">
+<button onclick="adicionarItem()">Adicionar</button>
+<ul id="lista"></ul>
+
+<script>
+  function adicionarItem() {
+    let item = document.getElementById("itemInput").value; 
+    if (item) {
+      let li = document.createElement("li");
+      li.textContent = item;
+      document.getElementById("lista").appendChild(li);
+      document.getElementById("itemInput").value = ""; 
+    }
+  }
+</script>
+
+
+//Temporizador simples 
+<p id="contador">3</p>
+<script>
+  let tempo = 3;
+  let intervalo = setInterval(function () {
+    document.getElementById("contador").innerText = tempo;
+    tempo--;
+    if (tempo < 0) clearInterval(intervalo);
+  }, 1000);
+</script>
+</body>
+</html>
